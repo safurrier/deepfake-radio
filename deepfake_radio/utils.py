@@ -57,7 +57,6 @@ def setup_logger(name, level=logging.INFO):
     logger.addHandler(console_handler)
 
     return logger
-import logging
 
 def init_logger(log_level=logging.INFO):
     logging.basicConfig(level=log_level,

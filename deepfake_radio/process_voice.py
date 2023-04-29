@@ -5,7 +5,6 @@ import logging
 
 
 from .data_models import VoiceClip
-from .process.download_yt import download_youtube_video
 from .process.trim_audio import trim_mp3
 from .process.isolate_vocals import isolate_voice
 from .process.clip_audio import split_audio_clips
@@ -26,13 +25,8 @@ def process_voice_clip(voice_clip:VoiceClip, voice_dir:Path):
     output_files = []
     # Download the voice
     if voice_clip.source.type == "youtube":
-        # Download the voice
-        interim_output_path = (interim_output_dir / fname)
-        ydl_output_fpath = (interim_output_path.parent / interim_output_path.stem).as_posix()
-        if not os.path.exists(ydl_output_fpath + ".mp3"):
-          logger.info(f"Youtube clip not found, downloading.[clip_path={ydl_output_fpath}]]")
-          download_youtube_video(voice_clip.source.location, ydl_output_fpath)
-
+        logger.warning(f"This branch removed YT downloading in order to be able to deploy on Railway. Remove any Voice Sources with YT links and re-upload.")
+        return
     elif voice_clip.source.type == "file":
         # Copy the voice to /interim
         if not os.path.exists(interim_output_dir / fname):

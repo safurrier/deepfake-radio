@@ -66,19 +66,8 @@
 
   > python main.py
 
-  * TODO: Explain how to deploy using Runway
 
-    * Go to [Runway](https://railway.app/verify)
-
-    * Sign up using Github
-
-    * Verify your account
-
-    * Create a new project
-
-    * Deploy from a Github Repo -> select the repo you've cloned this to
-
-    * Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` (optionally set `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` to anything if you'd like to have the voices update on deployment)
+  * For a guide on deploying the bot, see **Deploying using Runway**
 
 
 7) Invite the bot to your server
@@ -137,6 +126,23 @@ description: President Joe Biden
 5) Make sure in the .env file `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` is set to a value. Remove this env var if you don't want custom voices to be processed, and uploaded on bot startup.
 
 6) NOTE: Remove the example voice otherwise it will be uploaded as a voice clone to your ElevenLabs account
+
+## Deploying using Runway
+
+  * Unfortunately, Runway doesn't allow the dependency for downloading youtube videos, so to deploy you may need to pull the branch `railway_deployment` to get this to work
+
+  * Go to [Runway](https://railway.app/verify)
+
+  * Sign up using Github
+
+  * Verify your account
+
+  * Create a new project
+
+  * Deploy from a Github Repo -> select the repo you've cloned this to
+
+  * Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` and make sure NOT to set a variable for `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` so that the code won't attempt to upload voices and break when unable to process any non local files
+
 
 ## Future Improvements and TODOs
 
