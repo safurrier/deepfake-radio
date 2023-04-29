@@ -27,13 +27,7 @@ async def on_ready(event):
 
 VOICES = fetch_voices()
 # This is a Lightbulb thing
-# TODO: Improve handling of this beyond just truncating
-max_voices = 25
-if len(VOICES) > max_voices:
-    warning_msg = f"More than {max_voices} custom voices detected items, some items will be excluded."
-    logger.warning(warning_msg)
-    print(warning_msg)
-    VOICES = dict(islice(VOICES.items(), max_voices))
+
 
 
 

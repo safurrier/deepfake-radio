@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     bot.run(
         activity=hikari.Activity(
-            name="AI voices.",
+            name="Deepfake Radio",
             type=hikari.ActivityType.LISTENING
         ),
         ignore_session_start_limit=True,

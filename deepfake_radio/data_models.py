@@ -1,6 +1,6 @@
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 
 @dataclass
 class Source:
@@ -22,4 +22,4 @@ class VoiceClip:
 class Voice:
     name: str
     description: Optional[str] = None
-    clips: Optional[list[VoiceClip]] = None
+    clips: Optional[List[VoiceClip]] = None

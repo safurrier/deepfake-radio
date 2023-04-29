@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from .utils import yaml_to_dataclass
 from pathlib import Path
 from typing import Dict
+from itertools import islice
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,6 +32,11 @@ def fetch_voices() -> Dict[str, str]:
     cloned_voices = [voice for voice in response.json()['voices'] if voice['category'] == 'cloned']
     voices = {voice['name']: voice['voice_id'] for voice in cloned_voices}
 
+    max_voices = 25
+    if len(voices) > max_voices:
+        warning_msg = f"More than {max_voices} custom voices detected items, some items will be excluded."
+        logger.warning(warning_msg)
+        voices = dict(islice(voices.items(), max_voices))
 
     return voices
 

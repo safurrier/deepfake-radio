@@ -76,6 +76,11 @@
 
     * Create a new project
 
+    * Deploy from a Github Repo -> select the repo you've cloned this to
+
+    * Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` (optionally set `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` to anything if you'd like to have the voices update on deployment)
+
+
 7) Invite the bot to your server
 
   * Return to the [Discord Developer portal](https://discord.com/developers/applications)
@@ -130,6 +135,8 @@ description: President Joe Biden
   The voice isolation uses an open source model demucs for voice isolation. This can be helpful if there is background noise, but does not always work well. It will also increase the processing time substantially.
 
 5) Make sure in the .env file `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` is set to a value. Remove this env var if you don't want custom voices to be processed, and uploaded on bot startup.
+
+6) NOTE: Remove the example voice otherwise it will be uploaded as a voice clone to your ElevenLabs account
 
 ## Future Improvements and TODOs
 
