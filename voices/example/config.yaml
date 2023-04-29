@@ -1,0 +1,17 @@
+name: Joe Biden
+description: President Joe Biden
+
+1:
+  source:
+    location: input/biden.mp3
+    type: file
+2:
+  source:
+    location: https://www.youtube.com/watch?v=KADpsS8fbg8
+    type: youtube
+    # Note: start_time and end_time are optional
+    # but must be in format "HH:MM:SS"
+    start_time: "00:00:01"
+    end_time: "00:10:01"
+  isolate: True
+  clip_size: 60

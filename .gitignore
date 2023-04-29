@@ -1,3 +1,10 @@
+voices/**          # Ignore everything in the 'voices' directory
+!voices/example/  # Don't ignore the 'example' directory within 'voices'
+!voices/example/config.yaml
+!voices/example/input/biden.mp3
+voices/example/interim/**
+voices/example/upload/**
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
