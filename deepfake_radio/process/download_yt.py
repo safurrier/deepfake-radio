@@ -1,4 +1,4 @@
-import yt_dlp
+import chill_not_a_yt_downloader_railway as loader
 import subprocess
 import os
 import logging
@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def download_youtube_video(url, output_file, start_time=None, end_time=None):
-    ydl_opts = {
+    loader_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_file,
         'postprocessors': [{
@@ -23,12 +23,11 @@ def download_youtube_video(url, output_file, start_time=None, end_time=None):
         post_processor_args.append(f'-t {end_time}')
 
     if post_processor_args:
-        ydl_opts['ppa'] = ' '.join(post_processor_args)
+        loader_opts['ppa'] = ' '.join(post_processor_args)
 
-
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    with loader.YoutubeDL(loader_opts) as y_loader:
         logger.info(f"Downloading youtube video.[url={url}]")
-        ydl.download([url])
+        y_loader.download([url])
 
 
 def trim_mp3(input_file, output_file, start_time=None, end_time=None):
