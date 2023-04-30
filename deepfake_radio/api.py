@@ -10,7 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 load_dotenv()
 
-def fetch_voices() -> Dict[str, str]:
+def fetch_voices(max_voices: int=25) -> Dict[str, str]:
     """
     Fetch the available voices for the bot on startup.
 
@@ -32,7 +32,6 @@ def fetch_voices() -> Dict[str, str]:
     cloned_voices = [voice for voice in response.json()['voices'] if voice['category'] == 'cloned']
     voices = {voice['name']: voice['voice_id'] for voice in cloned_voices}
 
-    max_voices = 25
     if len(voices) > max_voices:
         warning_msg = f"More than {max_voices} custom voices detected items, some items will be excluded."
         logger.warning(warning_msg)
@@ -75,7 +74,7 @@ def upload_voice(voice_dir: Path):
     voice = yaml_to_dataclass(voice_dir / "config.yaml")
     upload_dir = voice_dir / "upload"
 
-    current_voices = fetch_voices()
+    current_voices = fetch_voices(max_voices=999999)
     if voice.name in current_voices:
         logger.info(f"Voice {voice.name} already exists. Skipping upload.")
         return
@@ -100,7 +99,7 @@ def upload_voice(voice_dir: Path):
 
     data = {
         'name': voice.name,
-        'labels': '{"accent": "American"}',  # Update this as needed
+        # 'labels': '{"accent": "American"}', # TODO: Add support for labels
         'description': voice.description
     }
 
@@ -113,6 +112,6 @@ def upload_voice(voice_dir: Path):
 
     # Check response status
     if response.status_code == 200:
-        logger.info("All files uploaded successfully!")
+        logger.info(f"All files uploaded successfully!.[voice_name: {voice.name}, n_samples: {len(files)}]")
     else:
         raise Exception(f"Failed to upload files. Response: {response.text}")

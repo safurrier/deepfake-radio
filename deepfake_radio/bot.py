@@ -3,6 +3,7 @@ import datetime
 import requests
 import random
 import os
+import json
 import logging
 
 import hikari
@@ -17,60 +18,41 @@ from deepfake_radio.api import fetch_voices
 logger = logging.getLogger(__name__)
 load_dotenv()
 
-
 bot = lightbulb.BotApp(os.environ.get('BOT_TOKEN'))
 miru.install(bot)
-
 @bot.listen(hikari.StartedEvent)
 async def on_ready(event):
     print("Ready!")
 
-VOICES = fetch_voices()
-# This is a Lightbulb thing
 
 
+def read_voices():
+    if os.path.exists("voices.json"):
+        with open("voices.json", "r") as json_file:
+            voices = json.load(json_file)
+        return voices
+    else:
+        return fetch_voices()
 
 
 @bot.command
 @lightbulb.command("update_voices", "Update the voices available to the bot. Defaults to all cloned voices.")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def update_voices(ctx: lightbulb.context.Context):
-    api_key = os.environ.get('ELEVEN_API_KEY')
-
-    if not api_key:
-        await ctx.respond("ERROR: No API key provided! Please provide an API key in the .env file.")
-        return
-
-    url = "https://api.elevenlabs.io/v1/voices"
-    headers = {
-        'accept': 'application/json',
-        'xi-api-key': api_key
-    }
-    response = requests.get(url, headers=headers)
-    await asyncio.sleep(0.50)
-
-    global VOICES
-    cloned_voices = [voice for voice in response.json()['voices'] if voice['category'] == 'cloned']
-    VOICES = {voice['name']: voice['voice_id'] for voice in cloned_voices}
-
-    # This is a Lightbulb thing
-    # TODO: Improve handling of this beyond just truncating
-    max_voices = 25
-    if len(VOICES) > max_voices:
-        warning_msg = f"More than {max_voices} custom voices detected items, some items will be excluded."
-        logger.warning(warning_msg)
-        await ctx.respond(f'Uh oh! More than {max_voices} custom voices detected items, some voices will be excluded 😢')
-        VOICES = dict(islice(VOICES.items(), max_voices))
+   # Get available voices and save them to a JSON file
+    with open("voices.json", "w") as json_file:
+        json.dump(fetch_voices(), json_file)
 
     await ctx.respond('🔄 Updated voices!')
 
 @bot.command
 @lightbulb.option("text", "Text to use the TTS. Max is 1000.", required=True)
-@lightbulb.option("voices", "Voices to utilize", choices=list(VOICES.keys()), required=True)
+@lightbulb.option("voices", "Voices to utilize", choices=list(read_voices().keys()), required=True)
 @lightbulb.option("title", "Voices to utilize", required=False)
 @lightbulb.command("speak", "Create an audio file voiced by you know who")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def speak(ctx: lightbulb.context.Context):
+    VOICES = read_voices()
     api_key = os.environ.get('ELEVEN_API_KEY')
 
     if not api_key:

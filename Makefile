@@ -3,8 +3,7 @@ create-conda-env:
 
 requirements:
 	pip install -r requirements.txt
-	chmod +x ./install_yt_dependency.sh
-	./install_yt_dependency.sh
-
+	chmod +x install_dependencies.sh
+	sh install_dependencies.sh
 run:
 	python main.py
