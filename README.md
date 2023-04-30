@@ -78,7 +78,7 @@
 
     * Deploy from a Github Repo -> select the repo you've cloned this to
 
-    * Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` (optionally set `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` to anything if you'd like to have the voices update on deployment)
+    * Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` (optionally set `UPLOAD_VOICES` if you want to upload voices before startup. *Do not set `PROCESS_VOICES`* as it breaks the Runway deployment as of now)
 
 
 7) Invite the bot to your server
@@ -134,17 +134,17 @@ description: President Joe Biden
 
   The voice isolation uses an open source model demucs for voice isolation. This can be helpful if there is background noise, but does not always work well. It will also increase the processing time substantially.
 
-5) Make sure in the .env file `PROCESS_AND_UPLOAD_VOICES_ON_STARTUP` is set to a value. Remove this env var if you don't want custom voices to be processed, and uploaded on bot startup.
+5) Make sure in the .env file `PROCESS_VOICES` and `UPLOAD_VOICES` is set to a value. Remove this env var if you don't want custom voices to be processed, and uploaded on bot startup.
 
 6) NOTE: Remove the example voice otherwise it will be uploaded as a voice clone to your ElevenLabs account
+
+7) Run the bot with env vars set for `PROCESS_VOICES` (if adding new custom voices) and/or `UPLOAD_VOICES` (if processed files present and no processing needed, just set this to upload to ElevenLabs)
+
+8) If you're looking for voice clone samples, there may or may not be a branch on this repo with available files.
 
 ## Future Improvements and TODOs
 
 [] Add conversation command
-
-[] Short guide to samples
-
-[] Deployment guide
 
 [] Have the bot set the API key using a command
 
