@@ -5,6 +5,7 @@ voices/**          # Ignore everything in the 'voices' directory
 voices/example/interim/**
 voices/example/upload/**
 
+.DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
