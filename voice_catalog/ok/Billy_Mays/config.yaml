@@ -1,0 +1,8 @@
+name: Billy Mays
+description: BILLY MAYS HERE!!!
+
+1:
+  source:
+    location: input/billy-mays.mp3
+    type: file
+  clip_size: 10

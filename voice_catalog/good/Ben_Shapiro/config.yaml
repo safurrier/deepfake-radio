@@ -1,0 +1,17 @@
+name: Ben Shapiro
+
+1:
+  source:
+    location: input/ben-shapiro-1.mp3
+    type: file
+  clip_size: 60
+2:
+  source:
+    location: input/ben-shapiro-2.mp3
+    type: file
+  clip_size: 60
+3:
+  source:
+    location: input/ben-shapiro-3.mp3
+    type: file
+  clip_size: 60

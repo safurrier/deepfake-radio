@@ -1,0 +1,18 @@
+name: Joe Biden
+description: President Joe Biden
+
+1:
+  source:
+    location: input/biden.mp3
+    type: file
+  clip_size: 30
+2:
+  source:
+    location: input/biden-2.mp3
+    type: file
+  clip_size: 30
+3:
+  source:
+    location: input/biden-3.mp3
+    type: file
+  clip_size: 30

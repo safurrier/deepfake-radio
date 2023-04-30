@@ -1,0 +1,7 @@
+name: Hilary Clinton
+
+1:
+  source:
+    location: https://www.youtube.com/watch?v=LBmJHygBu2g
+    type: youtube
+  clip_size: 30

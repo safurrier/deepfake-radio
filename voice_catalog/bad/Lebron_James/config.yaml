@@ -1,0 +1,8 @@
+name: Lebron James
+description: Lebron James, Lebron James, LEBRON JAMES
+
+2:
+  source:
+    location: https://www.youtube.com/watch?v=iy_Iy28wssE
+    type: youtube
+  clip_size: 10

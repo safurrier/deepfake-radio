@@ -1,0 +1,8 @@
+name: Joe Rogan
+description: Jamie pull up that AI voice clone of me
+
+1:
+  source:
+    location: input/joe_rogan.mp3
+    type: file
+  clip_size: 45

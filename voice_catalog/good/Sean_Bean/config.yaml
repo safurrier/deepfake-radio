@@ -1,0 +1,8 @@
+name: Sean Bean
+description: One does not simply clone the voice of Sean Bean
+
+1:
+  source:
+    location: input/sean_bean.mp3
+    type: file
+  clip_size: 60

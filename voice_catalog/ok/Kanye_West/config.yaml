@@ -1,0 +1,7 @@
+name: Kanye West
+
+1:
+  source:
+    location: https://www.youtube.com/watch?v=JUQmWXPsU_Y
+    type: youtube
+  clip_size: 60

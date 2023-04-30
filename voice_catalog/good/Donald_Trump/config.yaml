@@ -1,0 +1,23 @@
+name: Donald Trump
+description: One of the best, the very best, the very greatest impressions of former President Donald Trump
+
+1:
+  source:
+    location: input/trump.mp3
+    type: file
+  clip_size: 30
+2:
+  source:
+    location: input/trump-1.mp3
+    type: file
+  clip_size: 30
+3:
+  source:
+    location: input/trump-2.mp3
+    type: file
+  clip_size: 30
+4:
+  source:
+    location: input/trump-3.mp3
+    type: file
+  clip_size: 30

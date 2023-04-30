@@ -1,0 +1,28 @@
+name: Uncle Eddie (Randy Quaid)
+description: Randy Quaid as Uncle Eddie from National Lampoon's Christmas Vacation
+
+1:
+  source:
+    location: input/1.mp3
+    type: file
+2:
+  source:
+    location: input/2.mp3
+    type: file
+3:
+  source:
+    location: input/3.mp3
+    type: file
+4:
+  source:
+    location: input/4.mp3
+    type: file
+5:
+  source:
+    location: input/5.mp3
+    type: file
+6:
+  source:
+    location: input/6.mp3
+    type: file
+

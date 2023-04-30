@@ -1,0 +1,7 @@
+name: Jordan Peterson
+
+1:
+  source:
+    location: input/jordan-peterson-1.mp3
+    type: file
+  clip_size: 45

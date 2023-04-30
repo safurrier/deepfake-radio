@@ -1,0 +1,13 @@
+name: Kenny Powers (Danny McBride)
+description: Danny McBride as Kenny Powers
+
+1:
+  source:
+    location: input/danny-mcbride-1.mp3
+    type: file
+  clip_size: 15
+2:
+  source:
+    location: input/danny-mcbride-2.mp3
+    type: file
+  clip_size: 15

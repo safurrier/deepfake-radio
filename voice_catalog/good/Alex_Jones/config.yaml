@@ -1,0 +1,12 @@
+name: Alex Jones
+
+1:
+  source:
+    location: input/alex-jones-1.mp3
+    type: file
+  clip_size: 60
+2:
+  source:
+    location: input/alex-jones-2.mp3
+    type: file
+  clip_size: 60

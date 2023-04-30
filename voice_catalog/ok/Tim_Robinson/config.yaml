@@ -1,0 +1,56 @@
+name: Tim Robinson
+description: We alllll want to know who did this
+
+1:
+  source:
+    location: input/0.mp3
+    type: file
+2:
+  source:
+    location: input/1.mp3
+    type: file
+3:
+  source:
+    location: input/2.mp3
+    type: file
+4:
+  source:
+    location: input/3.mp3
+    type: file
+5:
+  source:
+    location: input/4.mp3
+    type: file
+6:
+  source:
+    location: input/5.mp3
+    type: file
+8:
+  source:
+    location: input/7.mp3
+    type: file
+9:
+  source:
+    location: input/8.mp3
+    type: file
+
+10:
+  source:
+    location: input/9.mp3
+    type: file
+
+11:
+  source:
+    location: input/10.mp3
+    type: file
+
+12:
+  source:
+    location: input/11.mp3
+    type: file
+
+13:
+  source:
+    location: input/12.mp3
+    type: file
+

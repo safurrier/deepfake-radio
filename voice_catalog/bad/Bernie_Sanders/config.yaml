@@ -1,0 +1,8 @@
+name: Bernie Sanders
+description: I am once again asking you to clone my voice
+
+1:
+  source:
+    location: https://www.youtube.com/watch?v=-1MVrNcP03Y
+    type: youtube
+  clip_size: 30

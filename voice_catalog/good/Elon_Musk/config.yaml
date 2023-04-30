@@ -1,0 +1,8 @@
+name: Elon Musk
+description: Renown genius and super awesome billionaire Elon Musk
+
+1:
+  source:
+    location: input/elon_musk.mp3
+    type: file
+  clip_size: 10

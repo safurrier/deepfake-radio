@@ -1,0 +1,7 @@
+name: Walter Sobchak (Jeff Goodman)
+description: Jeff Goodman as Walter Sobchak from The Big Lebowski
+
+1:
+  source:
+    location: input/walter-sobchak.mp3
+    type: file

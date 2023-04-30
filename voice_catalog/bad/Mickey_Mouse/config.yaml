@@ -1,0 +1,8 @@
+name: Mickey Mouse
+description: A bad Mickey Mouse impression
+
+1:
+  source:
+    location: input/Mickey_Mouse-1.mp3
+    type: file
+  clip_size: 10
