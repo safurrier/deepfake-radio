@@ -1,4 +1,30 @@
+
+![image info](radio.png)
 # Deepfake Radio
+
+Code for using Elevenlabs voice cloning for fun with friends
+
+### Discord Bot
+
+ * `/speak`
+
+    * Choose a voice, provide text and receive an audio clip in a message (embeds natively on Desktop but on mobile may need an app like VLC to open)
+
+ * `/conversation`
+
+    * Provide a script in the format `---Voice Name: hi how are you? --Voice Name: Pretty good!` and have the bot generate audio and splice it together into a conversation
+
+### Tools for processing and uploading audio samples for voice cloning
+
+  * Config for specifying
+
+    * Source (local or YouTube URL)
+
+    * Audio start and end time
+
+    * Voice isolation using an open source ML model ([Demucs](https://github.com/facebookresearch/demucs))
+
+    * Set clip sizes to automatically clip into smaller parts
 
 ## Bot Setup
 
@@ -57,7 +83,7 @@
   > conda activate deepfake_radio
 
 
-6) Install the depencies
+6) Install the dependencies
   > make requirements
   or manually run:
   ```
@@ -150,7 +176,11 @@ description: President Joe Biden
 
 ## Future Improvements and TODOs
 
-[] Add conversation command
+[] Add CLI tool for processing + uploading voices
+
+[] Add tag support for voice config
+
+[] Improve voice selection option to sort by tags
 
 [] Have the bot set the API key using a command
 
@@ -160,7 +190,4 @@ description: President Joe Biden
 
 Where we're going, we don't need tests. If the bot breaks on your server and your friends complain tell them to kick rocks or fix it themselves.
 
-
-
-
-Original inspiration of the bot from [ElevenLabsBot](https://github.com/elevenlabs/discord-bot)
+Original inspiration of the speak command from [ElevenLabsBot](https://github.com/elevenlabs/discord-bot)

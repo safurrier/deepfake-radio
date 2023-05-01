@@ -7,6 +7,7 @@ voice_catalog/ok/*/interim/**
 voice_catalog/bad/*/interim/**
 voice_catalog/presidents/*/interim/**
 
+conversations/**
 
 voices.json
 .env

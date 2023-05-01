@@ -37,7 +37,6 @@ def yaml_to_dataclass(yaml_file: str):
     return Voice(name=name, description=description, clips=clips)
 
 
-import logging
 
 def setup_logger(name, level=logging.INFO):
     logger = logging.getLogger(name)
@@ -57,7 +56,6 @@ def setup_logger(name, level=logging.INFO):
     logger.addHandler(console_handler)
 
     return logger
-import logging
 
 def init_logger(log_level=logging.INFO):
     logging.basicConfig(level=log_level,

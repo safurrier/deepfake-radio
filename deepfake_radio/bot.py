@@ -14,6 +14,10 @@ from itertools import islice
 from typing import Dict
 from dotenv import load_dotenv
 from deepfake_radio.api import fetch_voices
+from pydub import AudioSegment
+import tempfile
+import json
+
 
 logger = logging.getLogger(__name__)
 load_dotenv()
@@ -93,6 +97,92 @@ async def speak(ctx: lightbulb.context.Context):
             hikari_file = hikari.File(audio_filename)
             await ctx.respond(hikari_file)
             os.remove(audio_filename)
+
+    return
+
+async def generate_audio(text, voice_id, pause_duration=250):
+    api_key = os.environ.get('ELEVEN_API_KEY')
+    if not api_key:
+        raise Exception("ERROR: No API key provided! Please provide an API key in the .env file.")
+
+    headers = {
+        'accept': 'audio/mpeg',
+        'xi-api-key': api_key,
+        'Content-Type': 'application/json'
+    }
+    payload = {"text": text}
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
+
+    response = requests.post(url, json=payload, headers=headers)
+    if response.status_code == 400:
+        raise Exception("ERROR: Entered voice ID does not exist! Did you enter the ID correctly?")
+
+    # Save the response content to a temporary file
+    temp_file = tempfile.NamedTemporaryFile(suffix='.mp3')
+    temp_file.write(response.content)
+    temp_file.seek(0)
+    # Convert the mp3 file to wav and add the pause duration
+    audio_segment = AudioSegment.from_file(temp_file, format='mp3')
+    audio_segment += AudioSegment.silent(duration=pause_duration)
+
+    return audio_segment
+
+@bot.command
+@lightbulb.option("text", "Text to use the TTS. Max is 1000.", required=True)
+@lightbulb.option("delimiter", "Delimiter used to separate voices", required=False, default="---")
+@lightbulb.option("pause_length", "Pause time in seconds to put between each speaker", required=False, default=.25)
+@lightbulb.option("title", "Voices to utilize", required=False)
+@lightbulb.command("conversation", "Use voices in a convo. Use the format 'Voice Name: script ---' (the delimiter) to separate voices.")
+@lightbulb.implements(lightbulb.SlashCommand)
+async def conversation(ctx: lightbulb.context.Context):
+    VOICES = read_voices()
+    text = ctx.options.text
+    delimiter = ctx.options.delimiter
+
+    if len(text) > 1000:
+        await ctx.respond(f"WARNING: Text is over 1000 characters! Please try a sentence less than 1000 characters.\nTranscript: {text}")
+        return
+    # Defer the response to have more time for processing
+    await ctx.respond("Processing your request...")
+
+    # Parse text, call generate_audio for each voice, and combine the resulting AudioSegments
+    combined_audio = AudioSegment.empty()
+
+    # Split the text into sections using the delimiter
+    sections = text.split(delimiter)
+    if not sections[0].strip():  # If the first section is empty, remove it
+        sections.pop(0)
+
+    for section in sections:
+        colon_index = section.find(':')
+        if colon_index != -1:
+            voice_key = section[:colon_index].strip()
+            voice_text = section[colon_index + 1:].strip()
+            if voice_key in VOICES:
+                voice_id = VOICES[voice_key]
+                try:
+                    audio_segment = await generate_audio(voice_text, voice_id, pause_duration=ctx.options.pause_length*1000) # Convert from seconds to milliseconds
+                    combined_audio += audio_segment
+                except Exception as e:
+                    await ctx.respond(str(e))
+                    return
+            else:
+                await ctx.respond(f"ERROR: Invalid voice key '{voice_key}'. Please use a valid voice.")
+                return
+        else:
+            await ctx.respond(f"ERROR: Incorrect formatting of the text. Please use 'voice: text' format and separate speakers with the delimiter '{delimiter}'.")
+            return
+
+    # Save the combined audio to an mp3 file
+    if ctx.options.title:
+        audio_filename = f"audio-converse-{ctx.options.title}.mp3"
+    else:
+        audio_filename = f"audio-converse-{random.randint(1, 372855)}.mp3"
+
+    combined_audio.export(audio_filename, format='mp3')
+    hikari_file = hikari.File(audio_filename)
+    await ctx.respond(hikari_file)
+    os.remove(audio_filename)
 
     return
 
