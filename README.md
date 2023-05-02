@@ -28,7 +28,7 @@ Code for using Elevenlabs voice cloning for fun with friends
 
 ## Bot Setup
 
-1) Clone this repo
+1) Clone or fork this repo
 > git clone https://github.com/safurrier/deepfake-radio/
 
 2) Set up the bot
@@ -49,12 +49,14 @@ Code for using Elevenlabs voice cloning for fun with friends
 
   * In the `.env` file, set `BOT_TOKEN=$YOUR_TOKEN` on a line. E.g. `BOT_TOKEN=WWKDEQX8JOoxW61WPb6dXIzklNjaMHJf2zuHGk`
 
-2) Join [ElevenLabs](https://beta.elevenlabs.io/speech-synthesis) and sign up for an account with API access
+2) Join [ElevenLabs](https://beta.elevenlabs.io/speech-synthesis) and sign up for an account with API access. Try promo code for `BETA11` which may still be active for a free month of Creator tier access.
 
 3) Copy your ElevenLabs API token (Top Right -> Profile -> API Key Section) to the `.env` file under `ELEVEN_API_KEY` like `ELEVEN_API_KEY=asdfaskjd123498sasw`
 
 4) Create some voice clones using ElevenLabs.
   * See section **Add Custom Voices** for how to do this programtically, or clone them on the ElevenLabs platform
+  
+  * Branch `voice_catalog` contains some custom voices ready to go that you can copy into the `voices` directory if you so desire. 
 
   * This is a [good short guide](https://github.com/elevenlabs/discord-bot/blob/main/elevenbot.py) on some tips to creating good voice clones
 
@@ -96,19 +98,6 @@ Code for using Elevenlabs voice cloning for fun with friends
 
   > python main.py
 
-  * Depoying as an app on Railway
-
-    * Go to [Railway](https://railway.app/verify)
-
-    * Sign up using Github
-
-    * Verify your account
-
-    * Create a new project
-
-    * Deploy from a Github Repo -> select the repo you've cloned this to
-
-    * Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` (optionally set `UPLOAD_VOICES` if you want to upload voices before startup. *Do not set `PROCESS_VOICES`* as it breaks the Runway deployment as of now)
 
 
 7) Invite the bot to your server
@@ -126,6 +115,21 @@ Code for using Elevenlabs voice cloning for fun with friends
   * Select the server that you're a modmin on and add it to server. Authorize the bot.
 
 8) Use the bot! Use the `/speak` command to select a voice add text and generate audio. If no voices are present in the options, try running `/update-voices` first. Have fun!
+
+
+## Deploy as a Railway App 
+
+* Go to [Railway](https://railway.app/verify)
+
+* Sign up using Github
+
+* Verify your account
+
+* Create a new project
+
+* Deploy from a Github Repo -> select your copy of this repo.
+
+* Add Variables -> Add the env variables for `BOT_TOKEN` and `ELEVEN_API_KEY` (optionally set `UPLOAD_VOICES` if you want to upload voices before startup. *Do not set `PROCESS_VOICES`* as it breaks the Runway deployment as of now)
 
 
 ## Add Custom Voices
